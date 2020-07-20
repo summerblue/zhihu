@@ -18,3 +18,5 @@ Route::post('/answers/{answer}/up-votes', 'AnswerUpVotesController@store')->name
 Route::delete('/answers/{answer}/up-votes', 'AnswerUpVotesController@destroy')->name('answer-up-votes.destroy');
 Route::post('/answers/{answer}/down-votes', 'AnswerDownVotesController@store')->name('answer-down-votes.store');
 Route::delete('/answers/{answer}/down-votes', 'AnswerDownVotesController@destroy')->name('answer-down-votes.destroy');
+
+Route::post('/questions/{question}/published-questions', 'PublishedQuestionsController@store')->name('published-questions.store');
