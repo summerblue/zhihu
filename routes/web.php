@@ -31,3 +31,5 @@ Route::delete('/questions/{question}/down-votes', 'QuestionDownVotesController@d
 Route::post('/questions/{question}/published-questions', 'PublishedQuestionsController@store')->name('published-questions.store');
 
 Route::get('/drafts', 'DraftsController@index');
+
+Route::post('/questions/{question}/comments', 'QuestionCommentsController@store')->name('question-comments.store');
