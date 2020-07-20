@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Question;
-use App\User;
+use App\Models\Question;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class QuestionPolicy

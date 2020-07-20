@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Answer;
-use App\Question;
+use App\Models\Answer;
+use App\Models\Question;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -54,6 +54,6 @@ class QuestionTest extends TestCase
         $question = create(Question::class);
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\BelongsTo', $question->creator());
-        $this->assertInstanceOf('App\User', $question->creator);
+        $this->assertInstanceOf('App\Models\User', $question->creator);
     }
 }
