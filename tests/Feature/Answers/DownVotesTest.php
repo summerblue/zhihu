@@ -46,4 +46,21 @@ class DownVotesTest extends TestCase
 
         $this->assertCount(0, $answer->refresh()->votes('vote_down')->get());
     }
+
+    /** @test */
+    public function can_vote_down_only_once()
+    {
+        $this->signIn();
+
+        $answer = create(Answer::class);
+
+        try {
+            $this->post("/answers/{$answer->id}/down-votes");
+            $this->post("/answers/{$answer->id}/down-votes");
+        } catch (\Exception $e) {
+            $this->fail('Can not vote down twice.');
+        }
+
+        $this->assertCount(1, $answer->refresh()->votes('vote_down')->get());
+    }
 }
