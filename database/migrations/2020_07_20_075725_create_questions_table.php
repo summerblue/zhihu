@@ -13,6 +13,7 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('content');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }
