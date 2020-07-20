@@ -60,4 +60,9 @@ class Answer extends Model
     {
         $this->votes('vote_down')->create(['user_id' => $user->id, 'type' => 'vote_down']);
     }
+
+    public function cancelVoteDown($user)
+    {
+        $this->votes('vote_down')->where(['user_id' => $user->id, 'type' => 'vote_down'])->delete();
+    }
 }

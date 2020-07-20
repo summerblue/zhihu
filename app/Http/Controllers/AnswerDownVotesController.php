@@ -19,4 +19,11 @@ class AnswerDownVotesController extends Controller
 
         return response([], 201);
     }
+
+    public function destroy(Answer $answer)
+    {
+        $answer->cancelVoteDown(Auth::user());
+
+        return response([], 201);
+    }
 }
