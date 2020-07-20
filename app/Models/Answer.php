@@ -15,6 +15,15 @@ class Answer extends Model
         'downVotesCount',
     ];
 
+    protected static function boot()
+    {
+        parent::boot(); //
+
+        static::created(function ($reply) {
+            $reply->question->increment('answers_count');
+        });
+    }
+
     public function isBest()
     {
         return $this->id == $this->question->best_answer_id;

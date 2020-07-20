@@ -95,4 +95,13 @@ class QuestionTest extends TestCase
         $this->assertTrue($drafts->contains($draft2));
         $this->assertFalse($drafts->contains($publishedQuestion));
     }
+
+    /** @test */
+    public function question_has_answers_count()
+    {
+        $question = create(Question::class);
+        create(Answer::class, ['question_id' => $question->id]);
+
+        $this->assertEquals(1, $question->refresh()->answers_count);
+    }
 }
