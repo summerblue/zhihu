@@ -12,6 +12,18 @@ class PostAnswersTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function guests_may_not_post_an_answer()
+    {
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+
+        $question = factory(Question::class)->state('published')->create();
+
+        $this->post("/questions/{$question->id}/answers", [
+            'content' => 'This is a answer.'
+        ]);
+    }
+
+    /** @test */
     public function signed_in_user_can_post_an_answer_to_a_published_question()
     {
         $question = factory(Question::class)->state('published')->create();
@@ -21,7 +33,7 @@ class PostAnswersTest extends TestCase
             'content' => 'This is a answer.'
         ]);
 
-        $response->assertStatus(201);
+        $response->assertStatus(302);
 
         $answer = $question->answers()->where('user_id', $user->id)->first();
         $this->assertNotNull($answer);
@@ -33,7 +45,7 @@ class PostAnswersTest extends TestCase
     public function can_not_post_an_answer_to_a_unpublished_question()
     {
         $question = factory(Question::class)->state('unpublished')->create();
-        $user = factory(User::class)->create();
+        $this->actingAs($user = factory(User::class)->create());
 
         $response = $this->withExceptionHandling()
             ->post("/questions/{$question->id}/answers", [
@@ -53,7 +65,7 @@ class PostAnswersTest extends TestCase
         $this->withExceptionHandling();
 
         $question = factory(Question::class)->state('published')->create();
-        $user = factory(User::class)->create();
+        $this->actingAs($user = factory(User::class)->create());
 
         $response = $this->post("/questions/{$question->id}/answers", [
             'user_id' => $user->id,
