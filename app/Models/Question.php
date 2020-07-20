@@ -15,6 +15,7 @@ class Question extends Model
     protected $appends = [
         'upVotesCount',
         'downVotesCount',
+        'subscriptionsCount',
     ];
 
     public function scopePublished($query)
@@ -96,5 +97,21 @@ class Question extends Model
             ->notify($answer);
 
         return $answer;
+    }
+
+    public function isSubscribedTo($user)
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return $this->subscriptions()
+            ->where('user_id', $user->id)
+            ->exists();
+    }
+
+    public function getSubscriptionsCountAttribute()
+    {
+        return $this->subscriptions->count();
     }
 }
