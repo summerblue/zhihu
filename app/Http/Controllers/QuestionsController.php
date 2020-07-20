@@ -7,9 +7,26 @@ use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['show','index']);
+    }
+
     public function index()
     {
 
+    }
+
+    public function store()
+    {
+        $question = Question::create([
+            'user_id' => auth()->id(),
+            'category_id' => request('category_id'),
+            'title' => request('title'),
+            'content' => request('content'),
+        ]);
+
+        return redirect("/questions/$question->id");
     }
 
     public function show($questionId)
