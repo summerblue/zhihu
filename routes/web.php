@@ -33,3 +33,5 @@ Route::post('/questions/{question}/published-questions', 'PublishedQuestionsCont
 Route::get('/drafts', 'DraftsController@index');
 
 Route::post('/questions/{question}/comments', 'QuestionCommentsController@store')->name('question-comments.store');
+
+Route::post('/answers/{answer}/comments', 'AnswerCommentsController@store')->name('answer-comments.store');
