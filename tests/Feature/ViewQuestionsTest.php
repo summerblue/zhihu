@@ -27,7 +27,7 @@ class ViewQuestionsTest extends TestCase
     /** @test */
     public function user_can_view_a_published_question()
     {
-        $question = factory(Question::class)->create(['published_at' => Carbon::parse('-1 week')]);
+        $question = factory(Question::class)->state('published')->create();
 
         $this->get('/questions/' . $question->id)
             ->assertStatus(200)
@@ -38,7 +38,7 @@ class ViewQuestionsTest extends TestCase
     /** @test */
     public function user_cannot_view_unpublished_question()
     {
-        $question = factory(Question::class)->create(['published_at' => null]);
+        $question = factory(Question::class)->state('unpublished')->create();
 
         $this->withExceptionHandling()
             ->get('/questions/' . $question->id)
