@@ -21,7 +21,7 @@ class AnswersController extends Controller
             'content' => 'required'
         ]);
 
-        $question->answers()->create([
+        $answer = $question->addAnswer([
             'user_id' => auth()->id(),
             'content' => request('content')
         ]);

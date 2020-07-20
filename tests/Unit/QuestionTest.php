@@ -115,4 +115,49 @@ class QuestionTest extends TestCase
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\HasMany', $question->subscriptions());
     }
+
+    /** @test */
+    public function question_can_be_subscribed_to()
+    {
+        $user = create(User::class);
+        $question = create(Question::class, ['user_id' => $user->id]);
+
+        $question->subscribe($user->id);
+
+        $this->assertEquals(
+            1,
+            $question->subscriptions()->where('user_id', $user->id)->count()
+        );
+    }
+
+    /** @test */
+    public function question_can_be_unsubscribed_from()
+    {
+        $user = create(User::class);
+        $userId = $user->id;
+
+        $question = create(Question::class, ['user_id' => $userId]);
+
+        $question->subscribe($userId);
+
+        $question->unsubscribe($userId);
+
+        $this->assertEquals(
+            0,
+            $question->subscriptions()->where('user_id', $userId)->count()
+        );
+    }
+
+    /** @test */
+    public function question_can_add_answer()
+    {
+        $question = create(Question::class);
+
+        $question->addAnswer([
+            'content' => create(Answer::class)->content,
+            'user_id' => create(User::class)->id
+        ]);
+
+        $this->assertEquals(1, $question->refresh()->answers()->count());
+    }
 }
