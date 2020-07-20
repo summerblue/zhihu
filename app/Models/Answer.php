@@ -41,4 +41,18 @@ class Answer extends Model
     {
         return $this->morphMany(Vote::class, 'voted')->whereType($type);
     }
+
+    public function isVotedUp($user)
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return !! $this->votes('vote_up')->where('user_id', $user->id)->count();
+    }
+
+    public function getUpVotesCountAttribute()
+    {
+        return $this->votes('vote_up')->count();
+    }
 }
