@@ -3,6 +3,8 @@
 namespace Tests;
 
 use App\Models\User;
+use App\Translator\FakeSlugTranslator;
+use App\Translator\Translator;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Testing\TestResponse;
 
@@ -20,6 +22,8 @@ abstract class TestCase extends BaseTestCase
             // 通过  $this->original->getData() 可以获取到绑定给视图的原始数据
             return $this->original->getData()[$key];
         });
+
+        $this->app->instance(Translator::class, new FakeSlugTranslator);
     }
 
     protected function signIn($user = null)

@@ -95,4 +95,18 @@ class CreateQuestionsTest extends TestCase
         $this->post('/questions', $question->toArray())
             ->assertRedirect(route('verification.notice'));
     }
+
+    /** @test */
+    public function get_slug_when_create_a_question()
+    {
+        $this->signIn();
+
+        $question = make(Question::class, ['title' => '英语 英语']);
+
+        $this->post('/questions', $question->toArray());
+
+        $storedQuestion = Question::first();
+
+        $this->assertEquals('english-english', $storedQuestion->slug);
+    }
 }
