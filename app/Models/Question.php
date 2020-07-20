@@ -48,6 +48,11 @@ class Question extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function markAsBestAnswer($answer)
     {
         $this->update([
@@ -113,5 +118,10 @@ class Question extends Model
     public function getSubscriptionsCountAttribute()
     {
         return $this->subscriptions->count();
+    }
+
+    public function path()
+    {
+        return $this->slug ? "/questions/{$this->category->slug}/{$this->id}/{$this->slug}" : "/questions/{$this->category->slug}/{$this->id}";
     }
 }
