@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Notifications\QuestionWasUpdated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
     use \App\Models\Traits\VoteTrait;
+    use \App\Models\Traits\CommentTrait;
 
     protected $guarded = ['id'];
 
@@ -129,20 +129,5 @@ class Question extends Model
     public function path()
     {
         return $this->slug ? "/questions/{$this->category->slug}/{$this->id}/{$this->slug}" : "/questions/{$this->category->slug}/{$this->id}";
-    }
-
-    public function comment($content, $user)
-    {
-        $comment =  $this->comments()->create([
-            'user_id' => $user->id,
-            'content' => $content
-        ]);
-
-        return $comment;
-    }
-
-    public function getCommentsCountAttribute()
-    {
-        return $this->comments->count();
     }
 }
