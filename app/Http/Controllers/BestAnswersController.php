@@ -15,7 +15,7 @@ class BestAnswersController extends Controller
     public function store(Answer $answer)
     {
         $this->authorize('update', $answer->question);
-        
+
         $answer->question->markAsBestAnswer($answer);
 
         return back();
