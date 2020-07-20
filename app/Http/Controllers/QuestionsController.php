@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,13 @@ class QuestionsController extends Controller
 
     }
 
+    public function create(Question $question)
+    {
+        $categories = Category::all();
+
+        return view('questions.create', compact('question', 'categories'));
+    }
+
     public function store()
     {
         $this->validate(request(), [
@@ -34,7 +42,7 @@ class QuestionsController extends Controller
             'content' => request('content'),
         ]);
 
-        return redirect("/questions/$question->id");
+        return redirect("/drafts");
     }
 
     public function show($questionId)
