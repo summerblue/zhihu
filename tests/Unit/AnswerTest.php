@@ -139,4 +139,19 @@ class AnswerTest extends TestCase
             'voted_type' => get_class($answer)
         ]);
     }
+
+    /** @test */
+    public function can_know_it_is_voted_down()
+    {
+        $user = create(User::class);
+        $answer = create(Answer::class);
+        create(Vote::class, [
+            'user_id' => $user->id,
+            'voted_id' => $answer->id,
+            'voted_type' => get_class($answer),
+            'type' => 'vote_down'
+        ]);
+
+        $this->assertTrue($answer->refresh()->isVotedDown($user));
+    }
 }
