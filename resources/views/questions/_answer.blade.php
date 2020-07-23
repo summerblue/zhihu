@@ -2,7 +2,7 @@
     <li class="media" name="answer{{ $answer->id }}" id="answer{{ $answer->id }}">
         <div class="media-left">
             <a href="#">
-                <img class="media-object img-thumbnail mr-3" alt="{{ $answer->owner->name }}" src="https://cdn.learnku.com/uploads/images/202005/26/19192/mX9UwDEO9g.png!large" style="width:48px;height:48px;" />
+                <img class="media-object img-thumbnail mr-3" alt="{{ $answer->owner->name }}" src="{{ $answer->owner->userAvatar }}" style="width:48px;height:48px;" />
             </a>
         </div>
 

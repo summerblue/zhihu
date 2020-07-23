@@ -2054,6 +2054,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2360,6 +2362,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -60006,7 +60013,18 @@ var render = function() {
       attrs: { name: "comment" + _vm.id, id: "comment" + _vm.id }
     },
     [
-      _c("div", { staticClass: "media-left" }),
+      _c("div", { staticClass: "media-left" }, [
+        _c("a", { attrs: { href: "/profiles/" + _vm.attributes.user.name } }, [
+          _c("img", {
+            staticClass: "media-object img-thumbnail mr-3",
+            staticStyle: { width: "48px", height: "48px" },
+            attrs: {
+              alt: _vm.attributes.user.name,
+              src: _vm.attributes.user.userAvatar
+            }
+          })
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "media-body" }, [
         _c("div", { staticClass: "media-heading mt-0 mb-1 text-secondary" }, [
@@ -60308,6 +60326,14 @@ var render = function() {
               )
         ])
       : _vm._e(),
+    _vm._v(" "),
+    _c("a", { staticClass: "text-secondary" }, [
+      _c("i", { staticClass: "fa fa-folder" }),
+      _vm._v(" "),
+      _c("span", {
+        domProps: { textContent: _vm._s(this.question.category.name) }
+      })
+    ]),
     _vm._v(" "),
     _c("a", { staticClass: "text-secondary" }, [
       _c("i", { staticClass: "fa fa-eye" }),
