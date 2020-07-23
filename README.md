@@ -11,10 +11,6 @@
 
 ## 1. 拉取代码
 
-```
-git clone https://gitee.com/nofirst/larazhihu.git
-```
-
 ## 2. 新增站点
 
 在 `Homestead.yaml` 文件中新增 `larazhihu` 应用的 `sites` 和 `databases` 的相关设置
@@ -159,7 +155,7 @@ php artisan storage:link
 
 钩子文件请见 `resources/scripts/git-hooks/pre-push`。
 
-修改文件为可执行：
+确保文件为可执行：
 
 ```
 chmod 755 resources/scripts/git-hooks/pre-push
