@@ -30,7 +30,8 @@ class YouWereInvited extends Notification
         return [
             'user_id' => $questionCreator->id,
             'user_name' => $questionCreator->name,
-            'question_id' => $this->question->id,
+            'user_avatar' => $questionCreator->userAvatar,
+            'question_link' => $this->question->path(),
             'question_title' => $this->question->title,
         ];
     }

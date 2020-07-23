@@ -60014,13 +60014,13 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "media-left" }, [
-        _c("a", { attrs: { href: "/profiles/" + _vm.attributes.user.name } }, [
+        _c("a", { attrs: { href: "/profiles/" + _vm.attributes.owner.name } }, [
           _c("img", {
             staticClass: "media-object img-thumbnail mr-3",
             staticStyle: { width: "48px", height: "48px" },
             attrs: {
-              alt: _vm.attributes.user.name,
-              src: _vm.attributes.user.userAvatar
+              alt: _vm.attributes.owner.name,
+              src: _vm.attributes.owner.userAvatar
             }
           })
         ])

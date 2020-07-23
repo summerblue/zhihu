@@ -23,6 +23,6 @@ class PublishedQuestionsController extends Controller
 
         event(new PublishQuestion($question));
 
-        return redirect("/questions/{$question->id}");
+        return redirect($question->path());
     }
 }

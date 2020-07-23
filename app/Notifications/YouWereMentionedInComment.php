@@ -29,6 +29,7 @@ class YouWereMentionedInComment extends Notification
         return [
             'user_id' => $commentOwner->id,
             'user_name' => $commentOwner->name,
+            'user_avatar' => $commentOwner->userAvatar,
             'content' => $this->comment->content,
         ];
     }
