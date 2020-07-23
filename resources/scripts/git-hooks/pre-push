@@ -1,0 +1,27 @@
+#!/usr/bin/php
+
+<?php
+
+// 获取应用名称
+$projectName = basename(getcwd());
+
+echo PHP_EOL;
+echo '开始执行单元测试...'.PHP_EOL;
+exec('vendor/bin/phpunit --exclude-group online --stop-on-failure', $output, $returnCode);
+
+printf("测试结果: ", $projectName);
+echo PHP_EOL;
+
+if ($returnCode !== 0) {
+    printf(" ( %s ) %s%2\$s", end($output), PHP_EOL);
+    printf(" x 测试不通过，Git Push 已终止!\n");
+
+    // 停止 Git
+    exit(1);
+}
+
+echo ' √ 测试通过！'.PHP_EOL;
+echo PHP_EOL;
+
+// 继续执行 Git
+exit(0);
