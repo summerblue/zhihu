@@ -8,7 +8,18 @@ class AnswerCommentsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
+    }
+
+    public function index(Answer $answer)
+    {
+        $comments = $answer->comments()->paginate(10);
+
+        array_map(function (&$item) {
+            return $this->appendVotedAttribute($item);
+        }, $comments->items());
+
+        return $comments;
     }
 
     public function store(Answer $answer)

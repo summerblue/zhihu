@@ -13,6 +13,5 @@ class Comment extends Model
     protected $appends = [
         'upVotesCount',
         'downVotesCount',
-        'commentsCount',
     ];
 }
