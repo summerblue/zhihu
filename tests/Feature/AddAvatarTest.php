@@ -44,7 +44,7 @@ class AddAvatarTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        Storage::fake('public');
+        Storage::fake();
 
         // width 为 199 px，height 为 515 px，name 为 avatar.png 的图片文件
         $file = UploadedFile::fake()->image('avatar.png', 199, 516);
@@ -59,7 +59,7 @@ class AddAvatarTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        Storage::fake('public');
+        Storage::fake();
 
         $file = UploadedFile::fake()->image('avatar.png', 516, 199);
 
@@ -73,7 +73,7 @@ class AddAvatarTest extends TestCase
     {
         $this->signIn();
 
-        Storage::fake('public');
+        Storage::fake();
 
         $this->post(route('user-avatars.store', ['user' => auth()->user()]), [
             'avatar' => $file = UploadedFile::fake()->image('avatar.jpg', 300, 300)
@@ -82,6 +82,6 @@ class AddAvatarTest extends TestCase
         // 断言用户的头像地址被更新，且与预期的一致
         $this->assertEquals('avatars/' . $file->hashName(), auth()->user()->avatar_path);
         //断言文件被成功存储
-        Storage::disk('public')->assertExists('avatars/' . $file->hashName());
+        Storage::disk()->assertExists('avatars/'. $file->hashName());
     }
 }

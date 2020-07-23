@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -49,9 +50,14 @@ class User extends Authenticatable
         if ($this->avatar_path) {
             $file_path = $this->avatar_path;
         } else {
-            $file_path = '/avatars/default.png';
+            $file_path = 'avatars/default.png';
         }
 
-        return url($file_path);
+        return asset('storage/' . $file_path);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

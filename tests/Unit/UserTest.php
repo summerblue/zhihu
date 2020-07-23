@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Activity;
 use App\Models\User;
 
 use Tests\Testcase;
@@ -27,9 +28,9 @@ class UserTest extends TestCase
     public function user_can_determine_avatar_path()
     {
         $user = create(User::class);
-        $this->assertEquals(url('avatars/default.png'), $user->avatar());
+        $this->assertEquals(url('storage/avatars/default.png'), $user->avatar());
         $user->avatar_path = 'avatars/me.jpg';
-        $this->assertEquals(url('avatars/me.jpg'), $user->avatar());
+        $this->assertEquals(url('storage/avatars/me.jpg'), $user->avatar());
     }
 
     /** @test */
@@ -39,6 +40,16 @@ class UserTest extends TestCase
             'avatar_path' => 'avatars/example.png'
         ]);
 
-        $this->assertEquals(url('avatars/example.png'), $user->userAvatar);
+        $this->assertEquals(url('storage/avatars/example.png'), $user->userAvatar);
+    }
+
+    /** @test */
+    public function a_user_has_many_activities()
+    {
+        $user = create(User::class);
+
+        create(Activity::class, ['user_id' => $user->id]);
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\HasMany', $user->activities());
     }
 }
