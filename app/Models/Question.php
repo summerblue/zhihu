@@ -9,6 +9,7 @@ class Question extends Model
 {
     use \App\Models\Traits\VoteTrait;
     use \App\Models\Traits\CommentTrait;
+    use \App\Models\Traits\InvitedUsersTrait;
 
     protected $guarded = ['id'];
 
@@ -71,13 +72,6 @@ class Question extends Model
         $this->update([
             'published_at' => Carbon::now()
         ]);
-    }
-
-    public function invitedUsers()
-    {
-        preg_match_all('/@([^\s.]+)/', $this->content,$matches);
-
-        return $matches[1];
     }
 
     public function subscribe($userId)

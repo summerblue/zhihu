@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Events\PostComment;
 use App\Jobs\TranslateSlug;
 use App\Models\Answer;
 use App\Models\Category;
@@ -10,8 +11,10 @@ use App\Models\Question;
 use App\Models\Subscription;
 use App\Models\User;
 use App\Notifications\QuestionWasUpdated;
+use App\Notifications\YouWereMentionedInComment;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
@@ -19,6 +22,13 @@ use Tests\TestCase;
 class QuestionTest extends TestCase
 {
     use RefreshDatabase;
+
+    use AddCommentContractTest;
+
+    public function getCommentModel()
+    {
+        return create(Question::class);
+    }
 
     /** @test */
     public function a_question_has_many_answers()
