@@ -159,8 +159,14 @@ php artisan storage:link
 
 钩子文件请见 `resources/scripts/git-hooks/pre-push`。
 
-设置下链接即可：
+修改文件为可执行：
 
 ```
-ln resources/scripts/git-hooks/pre-push .git/hooks/pre-push
+chmod 755 resources/scripts/git-hooks/pre-push
+```
+
+执行以下命令即可：
+
+```
+cp resources/scripts/git-hooks/pre-push .git/hooks/pre-push
 ```
