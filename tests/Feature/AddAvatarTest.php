@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -44,7 +45,7 @@ class AddAvatarTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        Storage::fake();
+        Storage::fake('public');
 
         // width 为 199 px，height 为 515 px，name 为 avatar.png 的图片文件
         $file = UploadedFile::fake()->image('avatar.png', 199, 516);
@@ -59,7 +60,7 @@ class AddAvatarTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        Storage::fake();
+        Storage::fake('public');
 
         $file = UploadedFile::fake()->image('avatar.png', 516, 199);
 
@@ -73,7 +74,7 @@ class AddAvatarTest extends TestCase
     {
         $this->signIn();
 
-        Storage::fake();
+        Storage::fake('public');
 
         $this->post(route('user-avatars.store', ['user' => auth()->user()]), [
             'avatar' => $file = UploadedFile::fake()->image('avatar.jpg', 300, 300)
@@ -82,6 +83,20 @@ class AddAvatarTest extends TestCase
         // 断言用户的头像地址被更新，且与预期的一致
         $this->assertEquals('avatars/' . $file->hashName(), auth()->user()->avatar_path);
         //断言文件被成功存储
-        Storage::disk()->assertExists('avatars/'. $file->hashName());
+        Storage::disk('public')->assertExists('avatars/'. $file->hashName());
+    }
+
+    /** @test */
+    public function can_only_update_avatar_of_himself()
+    {
+        $this->withExceptionHandling();
+
+        $jane = create(User::class, ['name' => 'jane']);
+
+        $this->signIn($john = create(User::class, ['name' => 'john']));
+
+        $this->post(route('user-avatars.store', ['user' => $jane]), [
+            'avatar' => null
+        ])->assertStatus(403);
     }
 }
