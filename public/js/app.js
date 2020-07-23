@@ -60441,7 +60441,10 @@ var render = function() {
                 "background-color": "transparent",
                 "border-style": "none"
               },
-              attrs: { type: "submit" },
+              attrs: {
+                type: "submit",
+                dusk: "question-up-vote" + _vm.question.id
+              },
               on: { click: _vm.toggleVoteUp }
             },
             [
@@ -60463,7 +60466,10 @@ var render = function() {
                 "background-color": "transparent",
                 "border-style": "none"
               },
-              attrs: { type: "submit" },
+              attrs: {
+                type: "submit",
+                dusk: "question-down-vote" + _vm.question.id
+              },
               on: { click: _vm.toggleVoteDown }
             },
             [

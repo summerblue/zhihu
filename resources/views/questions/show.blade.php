@@ -17,7 +17,7 @@
                         </div>
 
                         <p class="media-body meta text-secondary">
-                            <question-affect :question="{{ $question }}" :display="true"></question-affect>
+                            <question-affect :question="{{ $question }}" :display="true" dusk="question-affect-component"></question-affect>
                         </p>
                     </div>
                 </div>

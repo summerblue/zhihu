@@ -46,14 +46,14 @@
         <span> • </span>
         <a v-if="signedIn" class="text-secondary" >
 
-            <button type="submit" :class="voteUpClasses" @click="toggleVoteUp" style="background-color:transparent;border-style:none;">
+            <button type="submit" :class="voteUpClasses" @click="toggleVoteUp" :dusk="`question-up-vote${question.id}`" style="background-color:transparent;border-style:none;">
                 <span></span>
                 <span v-text="upVotesCount"></span>
             </button>
 
             <span> • </span>
 
-            <button type="submit" :class="voteDownClasses" @click="toggleVoteDown" style="background-color:transparent;border-style:none;">
+            <button type="submit" :class="voteDownClasses" @click="toggleVoteDown" :dusk="`question-down-vote${question.id}`" style="background-color:transparent;border-style:none;">
                 <span></span>
                 <span v-text="downVotesCount"></span>
             </button>
