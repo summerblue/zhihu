@@ -42,3 +42,4 @@ Route::post('/questions/{question}/published-questions', 'PublishedQuestionsCont
 
 Route::get('/drafts', 'DraftsController@index');
 
+Route::post('/users/{user}/avatar', 'UserAvatarsController@store')->name('user-avatars.store');

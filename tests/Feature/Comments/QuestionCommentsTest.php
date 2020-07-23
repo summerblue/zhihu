@@ -46,7 +46,7 @@ class QuestionCommentsTest extends TestCase
             'content' => 'This is a reply.'
         ]);
 
-        $response->assertStatus(302);
+        $response->assertStatus(201);
 
         $comment = $question->comments()->where('user_id', $user->id)->first();
 
