@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class User extends Authenticatable
 {
     use Notifiable;
+    use \App\Models\Traits\ActiveUserHelperTrait;
 
     /**
      * The attributes that are mass assignable.
