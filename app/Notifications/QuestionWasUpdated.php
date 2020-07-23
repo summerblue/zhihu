@@ -33,6 +33,8 @@ class QuestionWasUpdated extends Notification
             'answer_content' => $this->answer->content,
             'user_id' => $this->answer->owner->id,
             'user_name' => $this->answer->owner->name,
+            'user_avatar' => $this->answer->owner->userAvatar,
+            'question_link' => $this->question->path(),
             'question_id' => $this->question->id,
             'question_title' => $this->question->title,
         ];
