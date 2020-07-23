@@ -38,10 +38,31 @@
             </div>
 
             <div class="answer-content text-secondary">
-                {{ $answer->content }}
+                <p v-html="content"></p>
             </div>
 
             <small class="media-body meta text-secondary">
+                <a class="text-secondary" role="button" href="#" data-toggle="modal" data-target="#modal{{$answer->id}}">
+                    <i class="fa fa-comments"></i>
+                    {{ $answer->comments_count }} 个评论
+                </a>
+
+                <div class="modal fade" id="modal{{$answer->id}}" tabindex="-1" role="dialog" aria-labelledby="modal{{$answer->id}}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal{{$answer->id}}">
+                                    评论列表
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <comments :data="{{ $answer->comments }}" :subject="{{ $answer }}"></comments>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                <span> • </span>
+
                 <answer-affect :answer="{{ $answer }}" v-if="signedIn"></answer-affect>
             </small>
         </div>

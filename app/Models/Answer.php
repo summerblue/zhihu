@@ -9,6 +9,7 @@ class Answer extends Model
     use \App\Models\Traits\VoteTrait;
     use \App\Models\Traits\CommentTrait;
 
+    protected $table = 'answers';
     protected $guarded = ['id'];
 
     protected $appends = [

@@ -11,6 +11,7 @@ class Question extends Model
     use \App\Models\Traits\CommentTrait;
     use \App\Models\Traits\InvitedUsersTrait;
 
+    protected $table = 'questions';
     protected $guarded = ['id'];
 
     protected $appends = [
@@ -18,6 +19,7 @@ class Question extends Model
         'downVotesCount',
         'subscriptionsCount',
         'commentsCount',
+        'commentEndpoint',
     ];
 
     public function scopePublished($query)

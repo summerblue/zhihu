@@ -11,6 +11,8 @@ class Comment extends Model
 
     protected $guarded = ['id'];
 
+    protected $with = ['owner'];
+
     protected $appends = [
         'upVotesCount',
         'downVotesCount',
