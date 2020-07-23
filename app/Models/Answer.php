@@ -8,6 +8,7 @@ class Answer extends Model
 {
     use \App\Models\Traits\VoteTrait;
     use \App\Models\Traits\CommentTrait;
+    use \App\Models\Traits\RecordActivityTrait;
 
     protected $table = 'answers';
     protected $guarded = ['id'];

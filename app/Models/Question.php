@@ -10,6 +10,7 @@ class Question extends Model
     use \App\Models\Traits\VoteTrait;
     use \App\Models\Traits\CommentTrait;
     use \App\Models\Traits\InvitedUsersTrait;
+    use \App\Models\Traits\RecordActivityTrait;
 
     protected $table = 'questions';
     protected $guarded = ['id'];
