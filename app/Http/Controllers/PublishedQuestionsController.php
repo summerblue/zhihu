@@ -23,6 +23,6 @@ class PublishedQuestionsController extends Controller
 
         event(new PublishQuestion($question));
 
-        return redirect($question->path());
+        return redirect($question->path())->with('flash', 'Post answer successful!');
     }
 }

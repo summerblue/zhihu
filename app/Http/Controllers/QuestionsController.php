@@ -65,7 +65,7 @@ class QuestionsController extends Controller
             'content' => request('content'),
         ]);
 
-        return redirect("/drafts");
+        return redirect("/drafts")->with('flash', 'Save drafts successful!');
     }
 
     public function show($category, $questionId)

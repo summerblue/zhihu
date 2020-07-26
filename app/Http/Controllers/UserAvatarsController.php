@@ -24,6 +24,6 @@ class UserAvatarsController extends Controller
             'avatar_path' => request()->file('avatar')->store('avatars','public')
         ]);
 
-        return back();
+        return back()->with('flash', 'Upload avatar successful!');
     }
 }
