@@ -68,4 +68,11 @@ class ViewQuestionsTest extends TestCase
         $this->assertCount(20, $result['data']);
         $this->assertEquals(40, $result['total']);
     }
+
+    /** @test */
+    public function the_home_page_is_questions_index_page()
+    {
+        $this->get('/')
+            ->assertRedirect('questions');
+    }
 }

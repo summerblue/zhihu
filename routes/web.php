@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get("/", function () {
+   return redirect('/questions', 301);
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/questions/{question}/comments', 'QuestionCommentsController@index')->name('question-comments.index');
