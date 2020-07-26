@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Questions;
+namespace Tests\Feature\Comments;
 
 use App\Models\Question;
 use App\Models\User;

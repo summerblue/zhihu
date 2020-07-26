@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Translator;
 
 use App\Translator\FakeSlugTranslator;
 use Illuminate\Support\Str;

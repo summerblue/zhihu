@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Featuree\Answers;
 
 use App\Models\Answer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
