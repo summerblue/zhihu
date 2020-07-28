@@ -3,13 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 
 trait VoteDownContractTest
 {
-    use RefreshDatabase;
-
     /** @test */
     public function guest_can_not_vote_down()
     {
@@ -77,7 +74,7 @@ trait VoteDownContractTest
     }
 
     /** @test */
-    public function can_know_up_votes_count()
+    public function can_know_down_votes_count()
     {
         $model = create($this->getModel());
 

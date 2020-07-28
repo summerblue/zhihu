@@ -3,13 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 
 trait VoteUpContractTest
 {
-    use RefreshDatabase;
-
     /** @test */
     public function guest_can_not_vote_up()
     {
