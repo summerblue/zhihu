@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Notifications\QuestionWasUpdated;
 use App\Notifications\YouWereMentionedInComment;
 use Carbon\Carbon;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
@@ -54,9 +55,9 @@ class QuestionTest extends TestCase
     /** @test */
     public function questions_with_published_at_date_are_published()
     {
-        $publishedQuestion1 = factory(Question::class)->state('published')->create();
-        $publishedQuestion2 = factory(Question::class)->state('published')->create();
-        $unpublishedQuestion = factory(Question::class)->state('unpublished')->create();
+        $publishedQuestion1 = PublishedQuestionFactory::createPublished();
+        $publishedQuestion2 = PublishedQuestionFactory::createPublished();
+        $unpublishedQuestion = PublishedQuestionFactory::createUnpublished();
 
         $publishedQuestions = Question::published()->get();
 

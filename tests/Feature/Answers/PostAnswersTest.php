@@ -4,6 +4,7 @@ namespace Tests\Featuree\Answers;
 
 use App\Models\Question;
 use App\Models\User;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -16,7 +17,7 @@ class PostAnswersTest extends TestCase
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->post("/questions/{$question->id}/answers", [
             'content' => 'This is an answer.'
@@ -26,7 +27,7 @@ class PostAnswersTest extends TestCase
     /** @test */
     public function signed_in_user_can_post_an_answer_to_a_published_question()
     {
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
         $this->signIn($user = create(User::class));
 
         $response = $this->post("/questions/{$question->id}/answers", [
@@ -64,7 +65,7 @@ class PostAnswersTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
         $this->signIn($user = create(User::class));
 
         $response = $this->post("/questions/{$question->id}/answers", [

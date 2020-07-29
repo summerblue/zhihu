@@ -3,6 +3,7 @@
 namespace Tests\Feature\Questions;
 
 use App\Models\Question;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -29,7 +30,7 @@ class SubscribeQuestionsTest extends TestCase
     {
         $this->signIn();
 
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->post('/questions/' . $question->id . '/subscriptions');
 
@@ -41,7 +42,7 @@ class SubscribeQuestionsTest extends TestCase
     {
         $this->signIn();
 
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->post('/questions/' . $question->id . '/subscriptions');
         $this->delete('/questions/' . $question->id . '/subscriptions');

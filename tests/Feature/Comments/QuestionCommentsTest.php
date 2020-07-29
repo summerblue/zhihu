@@ -4,6 +4,7 @@ namespace Tests\Feature\Comments;
 
 use App\Models\Question;
 use App\Models\User;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -16,7 +17,7 @@ class QuestionCommentsTest extends TestCase
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->post(route('question-comments.store', ['question' => $question]), [
             'content' => 'This is a comment.'
@@ -39,7 +40,7 @@ class QuestionCommentsTest extends TestCase
     /** @test */
     public function signed_in_user_can_comment_a_published_question()
     {
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
         $this->signIn($user = create(User::class));
 
         $response = $this->post(route('question-comments.store', ['question' => $question]), [
@@ -58,7 +59,7 @@ class QuestionCommentsTest extends TestCase
     /** @test */
     public function content_is_required_to_comment_a_question()
     {
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->signIn()->withExceptionHandling();;
 

@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Question;
 use Carbon\Carbon;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -44,7 +45,7 @@ class ViewQuestionsTest extends TestCase
     /** @test */
     public function user_cannot_view_unpublished_question()
     {
-        $question = factory(Question::class)->state('unpublished')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->withExceptionHandling()
             ->get('/questions/' . $question->id)

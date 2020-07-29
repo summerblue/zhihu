@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Models\User;
 use Carbon\Carbon;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -98,6 +99,6 @@ class FilterQuestionsTest extends TestCase
 
     private function publishQuestion($overrides = [])
     {
-        return factory(Question::class)->state('published')->create($overrides);
+        return PublishedQuestionFactory::createPublished($overrides);
     }
 }

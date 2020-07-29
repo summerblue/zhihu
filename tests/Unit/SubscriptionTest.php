@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Question;
 use App\Models\Subscription;
 use App\Models\User;
+use Helpers\PublishedQuestionFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -26,7 +27,7 @@ class SubscriptionTest extends TestCase
     {
         $this->signIn();
 
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->post('/questions/' . $question->id . '/subscriptions');
 
@@ -36,7 +37,7 @@ class SubscriptionTest extends TestCase
     /** @test */
     public function can_know_subscriptions_count()
     {
-        $question = factory(Question::class)->state('published')->create();
+        $question = PublishedQuestionFactory::createPublished();
 
         $this->signIn();
         $this->post('/questions/' . $question->id . '/subscriptions');
