@@ -19,7 +19,7 @@ class PostAnswersTest extends TestCase
         $question = factory(Question::class)->state('published')->create();
 
         $this->post("/questions/{$question->id}/answers", [
-            'content' => 'This is a answer.'
+            'content' => 'This is an answer.'
         ]);
     }
 
@@ -30,7 +30,7 @@ class PostAnswersTest extends TestCase
         $this->signIn($user = create(User::class));
 
         $response = $this->post("/questions/{$question->id}/answers", [
-            'content' => 'This is a answer.'
+            'content' => 'This is an answer.'
         ]);
 
         $response->assertStatus(302);
@@ -50,7 +50,7 @@ class PostAnswersTest extends TestCase
         $response = $this->withExceptionHandling()
             ->post("/questions/{$question->id}/answers", [
                 'user_id' => $user->id,
-                'content' => 'This is a answer.'
+                'content' => 'This is an answer.'
             ]);
 
         $response->assertStatus(404);

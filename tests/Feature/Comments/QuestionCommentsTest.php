@@ -19,7 +19,7 @@ class QuestionCommentsTest extends TestCase
         $question = factory(Question::class)->state('published')->create();
 
         $this->post(route('question-comments.store', ['question' => $question]), [
-            'content' => 'This is a answer.'
+            'content' => 'This is a comment.'
         ]);
     }
 
@@ -30,7 +30,7 @@ class QuestionCommentsTest extends TestCase
         $this->signIn($user = create(User::class))->withExceptionHandling();
 
         $response = $this->post(route('question-comments.store', ['question' => $question]), [
-            'content' => 'This is a reply.'
+            'content' => 'This is a comment.'
         ]);
 
         $response->assertStatus(404);
@@ -43,7 +43,7 @@ class QuestionCommentsTest extends TestCase
         $this->signIn($user = create(User::class));
 
         $response = $this->post(route('question-comments.store', ['question' => $question]), [
-            'content' => 'This is a reply.'
+            'content' => 'This is a comment.'
         ]);
 
         $response->assertStatus(201);

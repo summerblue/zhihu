@@ -19,7 +19,7 @@ class AnswerCommentsTest extends TestCase
         $answer = create(Answer::class);
 
         $this->post(route('answer-comments.store', ['answer' => $answer]), [
-            'content' => 'This is a answer.'
+            'content' => 'This is a comment.'
         ]);
     }
 
