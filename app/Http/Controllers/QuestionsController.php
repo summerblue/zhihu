@@ -16,6 +16,9 @@ class QuestionsController extends Controller
     {
         $question = Question::published()->findOrFail($questionId);
 
-        return view('questions.show',compact('question'));
+        return view('questions.show', [
+            'question' => $question,
+            'answers' => $question->answers()->paginate(20)
+        ]);
     }
 }
