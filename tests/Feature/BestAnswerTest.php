@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class BestAnswerTest extends TestCase
 {
@@ -39,5 +40,25 @@ class BestAnswerTest extends TestCase
 
         $this->assertFalse($answers[0]->fresh()->isBest());
         $this->assertTrue($answers[1]->fresh()->isBest());
+    }
+
+    /** @test */
+    public function only_the_question_creator_can_mark_a_best_answer()
+    {
+        $this->withExceptionHandling();
+
+        $this->signIn();
+
+        $question = create(Question::class, ['user_id' => auth()->id()]);
+
+        $answer = create(Answer::class, ['question_id' => $question->id]);
+
+        // 另一个用户
+        $this->signIn(create(User::class));
+
+        $this->postJson(route('best-answers.store', ['answer' => $answer]), [$answer])
+            ->assertStatus(403);
+
+        $this->assertFalse($answer->fresh()->isBest());
     }
 }
