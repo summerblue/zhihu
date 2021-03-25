@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Policies\QuestionPolicy;
 use App\Models\Question;
+use App\Policies\AnswerPolicy;
+use App\Models\Answer;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Question::class => QuestionPolicy::class,
+        Answer::class => AnswerPolicy::class,
     ];
 
     /**
