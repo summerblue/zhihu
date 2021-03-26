@@ -47,4 +47,13 @@ class QuestionTest extends TestCase
 
         $this->assertEquals($question->best_answer_id, $answer->id);
     }
+
+    /** @test */
+    public function a_question_belongs_to_a_creator()
+    {
+        $question = create(Question::class);
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\BelongsTo', $question->creator());
+        $this->assertInstanceOf('App\Models\User', $question->creator);
+    }
 }

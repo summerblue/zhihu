@@ -22,6 +22,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function markAsBestAnswer($answer)
     {
         $this->update([

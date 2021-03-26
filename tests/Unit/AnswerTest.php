@@ -29,4 +29,13 @@ class AnswerTest extends TestCase
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\BelongsTo', $answer->question());
     }
+
+    /** @test */
+    public function an_answer_belongs_to_an_owner()
+    {
+        $answer = create(Answer::class);
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\BelongsTo', $answer->owner());
+        $this->assertInstanceOf('App\Models\User', $answer->owner);
+    }
 }
