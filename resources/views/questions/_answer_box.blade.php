@@ -1,6 +1,6 @@
 @include('shared._error')
 
-<div class="answer-box">
+<div class="answer-box pt-4 pl-4 pr-4">
   <form action="/questions/{{ $question->id }}/answers" method="POST" accept-charset="UTF-8">
     {{ csrf_field() }}
     <div class="form-group">

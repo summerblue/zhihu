@@ -18,7 +18,7 @@
     </div>
 
     {{-- 答案列表 --}}
-    <div class="card question-reply mt-4">
+    <div class="card question-reply mt-4 mb-4">
       @includeWhen(Auth::check(),'questions._answer_box', ['question' => $question])
       @if(count($answers) > 0)
         <div class="card-body">
@@ -29,7 +29,7 @@
           </div>
         </div>
       @else
-        <div class="empty-block">暂时没有任何人回答~</div>
+        <div class="empty-block p-4">暂时没有任何人回答~</div>
       @endif
     </div>
 
