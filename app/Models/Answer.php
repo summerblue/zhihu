@@ -35,4 +35,9 @@ class Answer extends Model
     {
         return $this->morphMany(Vote::class, 'voted')->whereType($type);
     }
+
+    public function cancelVoteUp($user)
+    {
+        $this->votes('vote_up')->where(['user_id' => $user->id, 'type' => 'vote_up'])->delete();
+    }
 }
