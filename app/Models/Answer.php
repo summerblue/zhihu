@@ -28,7 +28,11 @@ class Answer extends Model
 
     public function voteUp($user)
     {
-        $this->votes('vote_up')->create(['user_id' => $user->id, 'type' => 'vote_up']);
+        $attributes = ['user_id' => $user->id];
+
+        if (! $this->votes('vote_up')->where($attributes)->exists()) {
+            $this->votes('vote_up')->create(['user_id' => $user->id, 'type' => 'vote_up']);
+        }
     }
 
     public function votes($type)
