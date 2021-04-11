@@ -72,4 +72,18 @@ class Answer extends Model
     {
         $this->votes('vote_down')->where(['user_id' => $user->id, 'type' => 'vote_down'])->delete();
     }
+
+    public function isVotedDown($user)
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return (bool)$this->votes('vote_down')->where('user_id', $user->id)->count();
+    }
+
+    public function getDownVotesCountAttribute()
+    {
+        return $this->votes('vote_down')->count();
+    }
 }
