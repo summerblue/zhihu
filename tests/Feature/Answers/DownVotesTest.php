@@ -30,4 +30,20 @@ class DownVotesTest extends TestCase
 
         $this->assertCount(1, $answer->refresh()->votes('vote_down')->get());
     }
+
+    /** @test */
+    public function an_authenticated_user_can_cancel_vote_down()
+    {
+        $this->signIn();
+
+        $answer = create(Answer::class);
+
+        $this->post("/answers/{$answer->id}/down-votes");
+
+        $this->assertCount(1, $answer->refresh()->votes('vote_down')->get());
+
+        $this->delete("/answers/{$answer->id}/down-votes");
+
+        $this->assertCount(0, $answer->refresh()->votes('vote_down')->get());
+    }
 }
