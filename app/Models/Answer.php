@@ -58,4 +58,9 @@ class Answer extends Model
     {
         return $this->votes('vote_up')->count();
     }
+
+    public function voteDown($user)
+    {
+		$this->votes('vote_down')->create(['user_id' => $user->id, 'type' => 'vote_down']);
+    }
 }

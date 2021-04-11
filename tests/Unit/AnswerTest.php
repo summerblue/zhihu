@@ -96,4 +96,28 @@ class AnswerTest extends TestCase
 
         $this->assertTrue($answer->refresh()->isVotedUp($user));
     }
+
+    /** @test */
+    public function can_vote_down_an_answer()
+    {
+        $this->signIn();
+
+        $answer = create(Answer::class);
+
+        $this->assertDatabaseMissing('votes', [
+            'user_id' => auth()->id(),
+            'voted_id' => $answer->id,
+            'voted_type' => get_class($answer),
+            'type' => 'vote_down',
+        ]);
+
+        $answer->voteDown(auth()->user());
+
+        $this->assertDatabaseHas('votes', [
+            'user_id' => auth()->id(),
+            'voted_id' => $answer->id,
+            'voted_type' => get_class($answer),
+            'type' => 'vote_down',
+        ]);
+    }
 }
