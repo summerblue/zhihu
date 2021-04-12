@@ -26,13 +26,13 @@ class AnswersController extends Controller
             'content' => request('content')
         ]);
 
-        return back();
+        return back()->with('flash', '回答发布成功！');
     }
 
     public function destroy(Answer $answer)
     {
         $this->authorize('delete', $answer);
         $answer->delete();
-        return back();
+        return back()->with('flash', '删除成功！');
     }
 }

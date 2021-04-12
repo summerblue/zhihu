@@ -16,9 +16,15 @@ class QuestionsController extends Controller
     {
         $question = Question::published()->findOrFail($questionId);
 
+        $answers = $question->answers()->paginate(20);
+
+        array_map(function ($item) {
+            return $this->appendVotedAttribute($item);
+        }, $answers->items());
+
         return view('questions.show', [
             'question' => $question,
-            'answers' => $question->answers()->paginate(20)
+            'answers' => $answers
         ]);
     }
 }

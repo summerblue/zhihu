@@ -16,6 +16,6 @@ class BestAnswersController extends Controller
     {
         $this->authorize('update', $answer->question);
         $answer->question->markAsBestAnswer($answer);
-        return back();
+        return back()->with('flash', '已设为最佳答案！');
     }
 }
