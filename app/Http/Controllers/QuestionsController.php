@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class QuestionsController extends Controller
 {
@@ -51,5 +52,15 @@ class QuestionsController extends Controller
         ]);
 
         return redirect("/questions/$question->id")->with('flash', '创建成功！');
+    }
+
+    public function create(Question $question)
+    {
+        $categories = Category::all();
+
+        return view('questions.create', [
+            'question' => $question,
+            'categories' => $categories
+        ]);
     }
 }
