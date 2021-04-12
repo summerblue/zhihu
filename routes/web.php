@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/questions', 'QuestionsController@index');
 Route::post('/questions', 'QuestionsController@store')->name('questions.store');
