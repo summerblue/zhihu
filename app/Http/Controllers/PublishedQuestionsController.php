@@ -23,6 +23,6 @@ class PublishedQuestionsController extends Controller
 
         event(new PublishQuestion($question));
 
-		return redirect("/questions/{$question->id}")->with('flash', "发布成功！");
+        return redirect($question->path())->with('flash', "发布成功！");
     }
 }

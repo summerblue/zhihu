@@ -20,7 +20,8 @@ class PublishQuestionsTest extends TestCase
 
         $this->assertCount(0, Question::published()->get());
 
-        $this->postJson(route('published-questions.store', ['question' => $question]));
+        $this->post(route('published-questions.store', ['question' => $question]))
+            ->assertRedirect($question->refresh()->path());
 
         $this->assertCount(1, Question::published()->get());
     }

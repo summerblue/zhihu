@@ -31,7 +31,7 @@ class YouWereInvited extends Notification
             'user_id' => $questionCreator->id,
             'user_name' => $questionCreator->name,
             'user_avatar' => $questionCreator->userAvatar,
-            'question_link' => "/questions/$this->question->id",
+            'question_link' => $this->question->path(),
             'question_title' => $this->question->title,
         ];
     }
