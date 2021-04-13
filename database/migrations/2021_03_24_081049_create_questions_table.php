@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('answers_count')->default(0);
+            $table->string('slug')->nullable();
         });
     }
 

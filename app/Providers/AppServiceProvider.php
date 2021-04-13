@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Question;
+use App\Observers\QuestionObserver;
+use App\Translator\BaiduSlugTranslator;
+use App\Translator\Translator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
         if (config('app.debug')) {
             $this->app->register('VIACreative\SudoSu\ServiceProvider');
         }
+
+        $this->app->bind(Translator::class, BaiduSlugTranslator::class);
     }
 
     /**
@@ -25,6 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Question::observe(QuestionObserver::class);
     }
 }
