@@ -34,6 +34,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'user_id');

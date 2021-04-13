@@ -10,6 +10,9 @@ Route::post('/questions', 'QuestionsController@store')->name('questions.store');
 Route::get('/questions/{category}/{question}', 'QuestionsController@show');
 Route::post('/questions/{question}/published-questions', 'PublishedQuestionsController@store')->name('published-questions.store');
 
+Route::post('/questions/{question}/subscriptions', 'SubscribeQuestionsController@store')->name('subscribe-questions.store');
+Route::delete('/questions/{question}/subscriptions', 'SubscribeQuestionsController@destroy')->name('subscribe-questions.destroy');
+
 Route::post('/questions/{question}/answers', 'AnswersController@store');
 
 Route::post('/answers/{answer}/best', 'BestAnswersController@store')->name('best-answers.store');
