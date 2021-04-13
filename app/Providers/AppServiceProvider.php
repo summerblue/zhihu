@@ -7,6 +7,7 @@ use App\Models\Question;
 use App\Observers\QuestionObserver;
 use App\Translator\BaiduSlugTranslator;
 use App\Translator\Translator;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Question::observe(QuestionObserver::class);
+
+        \View::composer('*',function ($view){
+            $view->with('categories', Category::all());
+        });
     }
 }

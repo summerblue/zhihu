@@ -13,51 +13,131 @@
 /* universal */
 
 body {
-  font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
-  font-size: 14px;
+    font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+    font-size: 14px;
 }
 
 /* header */
 
 .navbar-static-top {
-  border-color: #e7e7e7;
-  background-color: #fff;
-  box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 40px;
-  margin-top: 0px;
+    border-color: #e7e7e7;
+    background-color: #fff;
+    box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 40px;
+    margin-top: 0px;
 }
 
 /* Sticky footer styles */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #000;
 
-  .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
 
-    p {
-      margin: 19px 0;
-      color: #c1c1c1;
+        p {
+            margin: 19px 0;
+            color: #c1c1c1;
 
-      a {
-        color: inherit;
-      }
+            a {
+                color: inherit;
+            }
+        }
     }
-  }
+}
+
+/* Question Index Page */
+.questions-index-page {
+    .question-list {
+        .nav>li>a {
+            position: relative;
+            display: block;
+            padding: 5px 14px;
+            font-size: 0.9em;
+        }
+
+        a {
+            color: #444444;
+        }
+
+        .meta {
+            font-size: 0.9em;
+            color: #b3b3b3;
+
+            a {
+                color: #b3b3b3;
+            }
+        }
+
+        .badge {
+            background-color: #d8d8d8;
+        }
+
+        hr {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            border: 0;
+            border-top: 1px solid #dcebf5;
+        }
+    }
+}
+
+/* Add container and footer space */
+#app > div.container {
+    margin-bottom: 100px;
+}
+
+
+/* zhihu style */
+
+.navbar-nav > li {
+    float: left;
+    position: relative;
+}
+.navbar-static-top .navbar-nav .active a {
+    color: #444;
+    font-weight: 600;
+}
+.navbar-static-top .navbar-nav .active a::after {
+    border-bottom: 3px solid #0084ff;
+    bottom: -10px;
+    content: " ";
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.fs-12 {
+    font-size: 1.2rem!important;
+}
+.fs-11 {
+    font-size: 1.1rem!important;
+}
+.fs-10 {
+    font-size: 1rem!important;
+}
+.fs-09 {
+    font-size: 0.9rem!important;
+}
+.fs-08 {
+    font-size: 0.8rem!important;
+}
+.fs-07 {
+    font-size: 0.7rem!important;
 }
