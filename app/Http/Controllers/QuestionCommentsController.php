@@ -8,7 +8,7 @@ class QuestionCommentsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     public function store($questionId)
@@ -22,5 +22,16 @@ class QuestionCommentsController extends Controller
         $comment = $question->comment(request('content'), auth()->user());
 
         return back();
+    }
+
+    public function index(Question $question)
+    {
+        $comments = $question->comments()->paginate(10);
+
+        array_map(function ($item) {
+            return $this->appendVotedAttribute($item);
+        }, $comments->items());
+
+        return $comments;
     }
 }
