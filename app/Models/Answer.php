@@ -15,6 +15,7 @@ class Answer extends Model
     protected $appends = [
         'upVotesCount',
         'downVotesCount',
+        'commentsCount',
     ];
 
     protected static function boot()
@@ -39,5 +40,25 @@ class Answer extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function comment($content, $user)
+    {
+        $comment =  $this->comments()->create([
+            'user_id' => $user->id,
+            'content' => $content
+        ]);
+
+        return $comment;
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commented');
+    }
+
+    public function getCommentsCountAttribute()
+    {
+        return $this->comments->count();
     }
 }
