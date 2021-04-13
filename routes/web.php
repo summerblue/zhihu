@@ -19,4 +19,9 @@ Route::delete('/answers/{answer}/up-votes', 'AnswerUpVotesController@destroy')->
 Route::post('/answers/{answer}/down-votes', 'AnswerDownVotesController@store')->name('answer-down-votes.store');
 Route::delete('/answers/{answer}/down-votes', 'AnswerDownVotesController@destroy')->name('answer-down-votes.destroy');
 
+Route::post('/questions/{question}/up-votes', 'QuestionUpVotesController@store')->name('question-up-votes.store');
+Route::delete('/questions/{question}/up-votes', 'QuestionUpVotesController@destroy')->name('question-up-votes.destroy');
+Route::post('/questions/{question}/down-votes', 'QuestionDownVotesController@store')->name('question-down-votes.store');
+Route::delete('/questions/{question}/down-votes', 'QuestionDownVotesController@destroy')->name('question-down-votes.destroy');
+
 Route::get('/drafts', 'DraftsController@index');
