@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -213,5 +214,39 @@ class QuestionTest extends TestCase
         $question = create(Question::class);
 
         $this->assertInstanceOf(Category::class, $question->category);
+    }
+
+    /** @test */
+    public function a_question_has_many_comments()
+    {
+        $question = create(Question::class);
+
+        create(Comment::class, [
+            'commented_id' => $question->id,
+            'commented_type' => $question->getMorphClass(),
+            'content' => 'it is a comment'
+        ]);
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphMany', $question->comments());
+    }
+
+    /** @test */
+    public function can_comment_a_question()
+    {
+        $question = create(Question::class);
+
+        $question->comment('it is content', create(User::class));
+
+        $this->assertEquals(1, $question->refresh()->comments()->count());
+    }
+
+    /** @test */
+    public function can_get_comments_count_attribute()
+    {
+        $question = create(Question::class);
+
+        $question->comment('it is content', create(User::class));
+
+        $this->assertEquals(1, $question->refresh()->commentsCount);
     }
 }
