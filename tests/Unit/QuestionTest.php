@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\QuestionWasUpdated;
 
 class QuestionTest extends TestCase
 {
@@ -159,5 +161,23 @@ class QuestionTest extends TestCase
         ]);
 
         $this->assertEquals(1, $question->refresh()->answers()->count());
+    }
+
+    /** @test */
+    public function notify_all_subscribers_when_an_answer_is_added()
+    {
+        Notification::fake();
+
+        $user = create(User::class);
+
+        $question = create(Question::class);
+
+        $question->subscribe($user->id)
+            ->addAnswer([
+                'content' => 'Foobar',
+                'user_id' => 999 // 伪造一个与当前登录用户不同的 id
+            ]);
+
+        Notification::assertSentTo($user, QuestionWasUpdated::class);
     }
 }

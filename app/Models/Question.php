@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Notifications\QuestionWasUpdated;
 
 class Question extends Model
 {
@@ -86,6 +87,11 @@ class Question extends Model
     public function addAnswer($answer)
     {
         $answer = $this->answers()->create($answer);
+
+        $this->subscriptions
+            ->where('user_id', '!=', $answer->user_id)
+            ->each
+            ->notify($answer);
 
         return $answer;
     }
