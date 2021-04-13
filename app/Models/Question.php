@@ -15,6 +15,17 @@ class Question extends Model
     // 这里也放开了属性保护
     protected $guarded = ['id'];
 
+    protected $appends = [
+	  'upVotesCount',
+	  'downVotesCount',
+	  'subscriptionsCount',
+	];
+
+    public function getSubscriptionsCountAttribute()
+    {
+        return $this->subscriptions->count();
+    }
+
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
@@ -94,5 +105,16 @@ class Question extends Model
             ->notify($answer);
 
         return $answer;
+    }
+
+    public function isSubscribedTo($user)
+    {
+		if (! $user) {
+		  return false;
+		}
+
+        return $this->subscriptions()
+            ->where('user_id', $user->id)
+            ->exists();
     }
 }
