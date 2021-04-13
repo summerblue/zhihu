@@ -12,6 +12,12 @@ use App\Models\Comment;
 class AnswerTest extends TestCase
 {
     use RefreshDatabase;
+    use AddCommentContractTest;
+
+    public function getCommentModel()
+    {
+        return create(Answer::class);
+    }
 
     /** @test */
     public function it_knows_if_it_is_the_best()

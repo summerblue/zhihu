@@ -15,10 +15,20 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\QuestionWasUpdated;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\TranslateSlug;
+use Illuminate\Support\Facades\Event;
+use App\Events\PostComment;
+use App\Notifications\YouWereMentionedInComment;
 
 class QuestionTest extends TestCase
 {
     use RefreshDatabase;
+    use AddCommentContractTest;
+
+
+    public function getCommentModel()
+    {
+        return create(Question::class);
+    }
 
     /** @test */
     public function a_question_has_many_answers()
@@ -249,4 +259,5 @@ class QuestionTest extends TestCase
 
         $this->assertEquals(1, $question->refresh()->commentsCount);
     }
+
 }
