@@ -40,3 +40,5 @@ Route::get('/answers/{answer}/comments', 'AnswerCommentsController@index')->name
 Route::post('/answers/{answer}/comments', 'AnswerCommentsController@store')->name('answer-comments.store');
 
 Route::get('/questions/{category}/{question}/{slug?}', 'QuestionsController@show')->name('questions.show');
+
+Route::post('/users/{user}/avatar', 'UserAvatarsController@store')->name('user-avatars.store');
