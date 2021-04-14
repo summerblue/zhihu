@@ -14,6 +14,8 @@ class Question extends Model
     use Traits\CommentTrait;
     use Traits\InvitedUsersTrait;
 
+    protected $table = 'questions';
+
     // 这里也放开了属性保护
     protected $guarded = ['id'];
 
@@ -22,6 +24,7 @@ class Question extends Model
 	  'downVotesCount',
 	  'subscriptionsCount',
        'commentsCount',
+       'commentEndpoint',
 	];
 
     public function getSubscriptionsCountAttribute()

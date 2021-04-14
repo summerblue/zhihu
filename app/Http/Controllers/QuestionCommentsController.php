@@ -21,7 +21,7 @@ class QuestionCommentsController extends Controller
 
         $comment = $question->comment(request('content'), auth()->user());
 
-        return back();
+        return $comment->load('owner');
     }
 
     public function index(Question $question)

@@ -12,11 +12,13 @@ class Answer extends Model
     use Traits\CommentTrait;
 
     protected $guarded = ['id'];
+    protected $table = 'answers';
 
     protected $appends = [
         'upVotesCount',
         'downVotesCount',
         'commentsCount',
+        'commentEndpoint',
     ];
 
     protected static function boot()

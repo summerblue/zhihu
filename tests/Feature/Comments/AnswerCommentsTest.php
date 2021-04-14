@@ -33,7 +33,7 @@ class AnswerCommentsTest extends TestCase
             'content' => 'This is a comment.'
         ]);
 
-        $response->assertStatus(302);
+        $response->assertStatus(201);
 
         $comment = $answer->comments()->where('user_id', $user->id)->first();
 

@@ -260,4 +260,13 @@ class QuestionTest extends TestCase
         $this->assertEquals(1, $question->refresh()->commentsCount);
     }
 
+    /** @test */
+    public function can_get_comment_endpoint_attribute()
+    {
+        $question = create(Question::class);
+
+        $question->comment('it is content', create(User::class));
+
+        $this->assertEquals("/questions/{$question->id}/comments", $question->refresh()->commentEndpoint);
+    }
 }
