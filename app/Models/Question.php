@@ -18,6 +18,7 @@ class Question extends Model
 
     // 这里也放开了属性保护
     protected $guarded = ['id'];
+    protected $with = ['category'];
 
     protected $appends = [
 	  'upVotesCount',

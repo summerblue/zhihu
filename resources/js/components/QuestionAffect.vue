@@ -18,6 +18,11 @@
     </a>
 
     <a class="text-secondary">
+      <i class="fa fa-folder"></i>
+      <span v-text="this.question.category.name"></span>
+    </a>
+
+    <a class="text-secondary">
       <i class="fa fa-eye"></i>
       <span v-text="subscriptionsCount"></span> 人关注
     </a>

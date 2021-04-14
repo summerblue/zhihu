@@ -50,7 +50,7 @@
           <div class="media">
             <div align="center">
               <a href="#">
-                <img class="thumbnail img-fluid" src="https://cdn.learnku.com/uploads/images/202005/26/19192/mX9UwDEO9g.png!large" width="300px" height="300px" />
+                <img class="thumbnail img-fluid" src="{{ $question->creator->userAvatar }}" width="300px" height="300px"/>
               </a>
             </div>
           </div>
