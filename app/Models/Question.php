@@ -13,12 +13,15 @@ class Question extends Model
     use Traits\VoteTrait;
     use Traits\CommentTrait;
     use Traits\InvitedUsersTrait;
+    use Traits\RecordActivityTrait;
 
     protected $table = 'questions';
 
     // 这里也放开了属性保护
     protected $guarded = ['id'];
     protected $with = ['category'];
+
+    protected $dates = ['created_at', 'updated_at', 'published_at'];
 
     protected $appends = [
 	  'upVotesCount',
