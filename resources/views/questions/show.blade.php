@@ -49,7 +49,7 @@
           <hr>
           <div class="media">
             <div align="center">
-              <a href="#">
+              <a href="/profiles/{{ $question->creator->id }}">
                 <img class="thumbnail img-fluid" src="{{ $question->creator->userAvatar }}" width="300px" height="300px"/>
               </a>
             </div>

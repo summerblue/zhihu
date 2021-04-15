@@ -1,14 +1,14 @@
 <answer :attributes="{{ $answer }}" inline-template>
-	<li class="media" name="answer{{ $answer->id }}" id="answer{{ $answer->id }}">
-		<div class="media-left">
-			<a href="#">
-				<img class="media-object img-thumbnail mr-3" alt="{{ $answer->owner->name }}" src="{{ $answer->owner->userAvatar }}" style="width:48px;height:48px;" />
-			</a>
-		</div>
+  <li class="media" name="answer{{ $answer->id }}" id="answer{{ $answer->id }}">
+    <div class="media-left">
+      <a href="/profiles/{{ $answer->owner->id }}">
+        <img class="media-object img-thumbnail mr-3" alt="{{ $answer->owner->name }}" src="{{ $answer->owner->userAvatar }}" style="width:48px;height:48px;" />
+      </a>
+    </div>
 
     <div class="media-body">
       <div class="media-heading mt-0 mb-1 text-secondary">
-        <a href="#" title="{{ $answer->owner->name }}">
+        <a href="/profiles/{{ $answer->owner->id }}" title="{{ $answer->owner->name }}">
           {{ $answer->owner->name }}
         </a>
         <span class="text-secondary"> • </span>

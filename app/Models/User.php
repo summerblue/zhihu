@@ -26,6 +26,11 @@ class User extends Authenticatable
 
     protected $appends = [ 'userAvatar'];
 
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
 	public function getUserAvatarAttribute()
 	{
 		return $this->avatar();

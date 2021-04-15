@@ -42,3 +42,4 @@ Route::post('/answers/{answer}/comments', 'AnswerCommentsController@store')->nam
 Route::get('/questions/{category}/{question}/{slug?}', 'QuestionsController@show')->name('questions.show');
 
 Route::post('/users/{user}/avatar', 'UserAvatarsController@store')->name('user-avatars.store');
+Route::get('/profiles/{user}', 'ProfilesController@show')->name('users.show');
