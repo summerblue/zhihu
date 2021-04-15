@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class AddAvatarTest extends TestCase
 {
@@ -83,5 +84,19 @@ class AddAvatarTest extends TestCase
 		$this->assertEquals('avatars/' . $file->hashName(), auth()->user()->avatar_path);
 		//断言文件被成功存储
 		Storage::disk('public')->assertExists('avatars/'. $file->hashName());
+    }
+
+    /** @test */
+    public function can_only_update_avatar_of_himself()
+    {
+        $this->withExceptionHandling();
+
+        $jane = create(User::class, ['name' => 'jane']);
+
+        $this->signIn($john = create(User::class, ['name' => 'john']));
+
+        $this->post(route('user-avatars.store', ['user' => $jane]), [
+            'avatar' => null
+        ])->assertStatus(403);
     }
 }

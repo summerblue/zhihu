@@ -11,19 +11,17 @@
         </h1>
       </div>
 
-      @if(Auth::check())
+      @can('update', $profileUser)
       <form method="POST" action="{{ route('user-avatars.store', $profileUser) }}" enctype="multipart/form-data">
         {{ csrf_field() }}
-
-        @include('shared._error')
 
         <input type="file" name="avatar">
 
         <button type="submit" class="btn btn-primary">上传头像</button>
       </form>
-      @endif
 
       <img src="{{ $profileUser->userAvatar }}" width="200" height="200">
+      @endcan
 
       @foreach($activities as $activity)
       <li class=" media">
