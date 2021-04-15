@@ -43,3 +43,5 @@ Route::get('/questions/{category}/{question}/{slug?}', 'QuestionsController@show
 
 Route::post('/users/{user}/avatar', 'UserAvatarsController@store')->name('user-avatars.store');
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('users.show');
+
+Route::get('/notifications', 'UserNotificationsController@index')->name('user-notifications.index');
