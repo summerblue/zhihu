@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    use Traits\ActiveUserHelperTrait;
+
     protected $fillable = [
         'name', 'email', 'password', 'avatar_path'
     ];
