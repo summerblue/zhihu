@@ -77,6 +77,7 @@
         type="submit"
         :class="voteUpClasses"
         @click="toggleVoteUp"
+        :dusk="`question-up-vote${question.id}`"
         style="background-color: transparent; border-style: none"
       >
         <span></span>
@@ -89,6 +90,7 @@
         type="submit"
         :class="voteDownClasses"
         @click="toggleVoteDown"
+        :dusk="`question-down-vote${question.id}`"
         style="background-color: transparent; border-style: none"
       >
         <span></span>
@@ -97,7 +99,6 @@
     </a>
   </div>
 </template>
-
 <script>
 export default {
   props: ["question", "display"],
